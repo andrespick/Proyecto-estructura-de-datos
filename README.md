@@ -3,7 +3,7 @@
 
 Esta es una aplicación de terminal para la gestión de contactos personales o profesionales. Permite **agregar, buscar, actualizar, eliminar y visualizar contactos ordenados alfabéticamente**, utilizando estructuras de datos como **árboles binarios de búsqueda** y **tablas hash** implementadas manualmente.
 
-## 🎯 Objetivo
+## 🎯 Objetivo 
 
 El proyecto busca optimizar la forma en que se almacenan y gestionan los contactos, sin el uso de bases de datos ni librerías externas, haciendo énfasis en la eficiencia de búsqueda y ordenamiento usando estructuras clásicas de datos.
 
