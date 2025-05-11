@@ -3,13 +3,13 @@
 # -----------------------------
 class Contacto:
     def __init__(self, nombre, telefono, email):
-        self.nombre = nombre  # Se guarda el nombre original
-        self.nombre_key = nombre.lower()  # Usado para búsquedas sin importar mayúsculas
+        self.nombre = nombre
+        self.nombre_key = nombre.lower()
         self.telefono = telefono
         self.email = email
 
     def __str__(self):
-        return f"Nombre: {self.nombre}, Teléfono: {self.telefono}, Email: {self.email}"
+        return f"📇 Nombre: {self.nombre}\n   📞 Teléfono: {self.telefono}\n   📧 Email: {self.email}"
 
 # -----------------------------
 # Árbol Binario de Búsqueda
@@ -64,10 +64,7 @@ class TablaHash:
 
     def _hash(self, clave):
         clave = clave.lower()
-        hash_total = 0
-        for caracter in clave:
-            hash_total += ord(caracter)
-        return hash_total % self.tamaño
+        return sum(ord(c) for c in clave) % self.tamaño
 
     def insertar(self, contacto):
         indice = self._hash(contacto.nombre_key)
@@ -97,8 +94,7 @@ class TablaHash:
     def obtener_todos(self):
         contactos = []
         for sublista in self.tabla:
-            for contacto in sublista:
-                contactos.append(contacto)
+            contactos.extend(sublista)
         return contactos
 
 # -----------------------------
@@ -111,63 +107,71 @@ def menu():
     hash_tabla = TablaHash()
 
     while True:
-        print("\n--- AGENDA DE CONTACTOS ---")
-        print("1. Agregar contacto")
-        print("2. Buscar contacto")
-        print("3. Eliminar contacto")
-        print("4. Actualizar contacto")
-        print("5. Ver todos los contactos")
-        print("6. Salir")
-        opcion = input("Selecciona una opción: ")
+        print("\n" + "═" * 50)
+        print("📒 AGENDA DE CONTACTOS INTELIGENTE 📒".center(50))
+        print("═" * 50)
+        print("1️⃣  Agregar contacto")
+        print("2️⃣  Buscar contacto")
+        print("3️⃣  Eliminar contacto")
+        print("4️⃣  Actualizar contacto")
+        print("5️⃣  Ver todos los contactos")
+        print("6️⃣  Salir")
+        print("─" * 50)
+        opcion = input("👉 Elige una opción: ")
 
         if opcion == "1":
-            nombre = input("Nombre: ")
-            telefono = input("Teléfono: ")
-            email = input("Email: ")
+            print("\n📥 INGRESAR NUEVO CONTACTO")
+            nombre = input("📝 Nombre: ")
+            telefono = input("📞 Teléfono: ")
+            email = input("📧 Email: ")
             contacto = Contacto(nombre, telefono, email)
             arbol.insertar(contacto)
             hash_tabla.insertar(contacto)
             print("✅ Contacto agregado exitosamente.")
 
         elif opcion == "2":
-            nombre = input("Nombre del contacto a buscar: ")
+            print("\n🔍 BUSCAR CONTACTO")
+            nombre = input("🔎 Nombre a buscar: ")
             contacto = hash_tabla.buscar(nombre)
             if contacto:
-                print("📇 Contacto encontrado:\n", contacto)
+                print("\n✅ Contacto encontrado:\n")
+                print(contacto)
             else:
-                print("⚠️ Contacto no encontrado.")
+                print("❌ Contacto no encontrado.")
 
         elif opcion == "3":
-            nombre = input("Nombre del contacto a eliminar: ")
-            eliminado = hash_tabla.eliminar(nombre)
-            if eliminado:
+            print("\n🗑️ ELIMINAR CONTACTO")
+            nombre = input("🗑️ Nombre del contacto a eliminar: ")
+            if hash_tabla.eliminar(nombre):
                 print("✅ Contacto eliminado.")
             else:
-                print("⚠️ Contacto no encontrado.")
+                print("❌ Contacto no encontrado.")
 
         elif opcion == "4":
-            nombre = input("Nombre del contacto a actualizar: ")
+            print("\n✏️ ACTUALIZAR CONTACTO")
+            nombre = input("🛠️ Nombre del contacto a actualizar: ")
             contacto = hash_tabla.buscar(nombre)
             if contacto:
-                print("📇 Contacto actual:", contacto)
-                nuevo_telefono = input("Nuevo teléfono: ")
-                nuevo_email = input("Nuevo email: ")
+                print("\n📇 Contacto actual:")
+                print(contacto)
+                nuevo_telefono = input("📞 Nuevo teléfono: ")
+                nuevo_email = input("📧 Nuevo email: ")
                 nuevo_contacto = Contacto(
                     contacto.nombre, nuevo_telefono, nuevo_email)
                 arbol.insertar(nuevo_contacto)
                 hash_tabla.insertar(nuevo_contacto)
                 print("✅ Contacto actualizado.")
             else:
-                print("⚠️ Contacto no encontrado.")
+                print("❌ Contacto no encontrado.")
 
         elif opcion == "5":
             ver_todos_contactos(hash_tabla)
 
         elif opcion == "6":
-            print("👋 Saliendo de la agenda...")
+            print("\n👋 ¡Gracias por usar la Agenda de Contactos!\n")
             break
         else:
-            print("❌ Opción inválida, intenta de nuevo.")
+            print("❌ Opción inválida. Intenta de nuevo.")
 
 # -----------------------------
 # Ver todos los contactos ordenados
@@ -175,20 +179,21 @@ def menu():
 
 
 def ver_todos_contactos(tabla_hash):
+    print("\n📋 LISTA DE TODOS LOS CONTACTOS:")
     contactos = tabla_hash.obtener_todos()
 
-    # Ordenamiento burbuja manual por nombre_key
+    # Ordenamiento burbuja
     n = len(contactos)
     for i in range(n):
         for j in range(0, n-i-1):
             if contactos[j].nombre_key > contactos[j+1].nombre_key:
                 contactos[j], contactos[j+1] = contactos[j+1], contactos[j]
 
-    print("\n📋 Lista de contactos ordenada alfabéticamente:")
     if not contactos:
-        print("No hay contactos guardados.")
+        print("⚠️ No hay contactos guardados.")
     else:
-        for contacto in contactos:
+        for i, contacto in enumerate(contactos, 1):
+            print(f"\n🟢 Contacto {i}:")
             print(contacto)
 
 
