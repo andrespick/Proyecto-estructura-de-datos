@@ -25,7 +25,7 @@ El proyecto busca optimizar la forma en que se almacenan y gestionan los contact
 
 ## 📦 Requisitos
 
-- Python 3.x
+- Python 3.13.2
 - Terminal compatible con codificación UTF-8 (emojis)
 
 > ⚠️ No se requiere conexión a internet ni instalación de paquetes adicionales.
