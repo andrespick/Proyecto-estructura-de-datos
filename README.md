@@ -1,4 +1,4 @@
-```markdown
+
 # 📒 Agenda de Contactos - Proyecto en Python
 
 Esta es una aplicación de terminal para la gestión de contactos personales o profesionales. Permite **agregar, buscar, actualizar, eliminar y visualizar contactos ordenados alfabéticamente**, utilizando estructuras de datos como **árboles binarios de búsqueda** y **tablas hash** implementadas manualmente.
