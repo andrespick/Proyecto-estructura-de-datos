@@ -38,13 +38,12 @@ El proyecto busca optimizar la forma en que se almacenan y gestionan los contact
 
 ```bash
 git clone https://github.com/andrespick/Proyecto-estructura-de-datos.git
-cd agenda-contactos-python
 ```
 
 2. Ejecuta el archivo principal:
 
 ```bash
-python agenda_contactos.py
+Agenda_de_Contactos.py
 ```
 
 ---
