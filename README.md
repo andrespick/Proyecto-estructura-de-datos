@@ -37,7 +37,7 @@ El proyecto busca optimizar la forma en que se almacenan y gestionan los contact
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/tu_usuario/agenda-contactos-python.git
+git clone [https://github.com/tu_usuario/agenda-contactos-python.git](https://github.com/andrespick/Proyecto-estructura-de-datos.git)
 cd agenda-contactos-python
 ```
 
